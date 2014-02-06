@@ -2,13 +2,24 @@
 <html>
 <head>
 
+	<style>
+		.dijitComboBox  {
+			-webkit-user-select: none
+		}
+		.dijitComboBox * {
+			-webkit-user-select: none
+		}
+		* {
+			-webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
+		}
+
+	</style>
+
 	<!--
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dijit/themes/claro/claro.css">
 
 	<script>dojoConfig = {parseOnLoad: true}</script>
-	<script src='//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js'></script>
-	-->
-
+	<script src='//ajax.googleapis.com/ajax/libs/dojo/1.9.2/dojo/dojo.js'></script>-->
 	<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/dojo/1.7.5/dijit/themes/claro/claro.css">
 
 	<script>dojoConfig = {parseOnLoad: true}</script>
@@ -37,6 +48,7 @@
 			ready(function () {
 				var filteringSelect = new FilteringSelect({
 					id: "stateSelect",
+					readonly: true,
 					name: "state",
 					value: "CA",
 					store: stateStore,
