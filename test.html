@@ -26,8 +26,9 @@
 	<script src='//ajax.googleapis.com/ajax/libs/dojo/1.7.5/dojo/dojo.js'></script>
 	<script>
 		require([
-			"dojo/ready", "dojo/store/Memory", "dijit/form/FilteringSelect"
-		], function (ready, Memory, FilteringSelect) {
+			"dojo/ready", "dojo/store/Memory", "dijit/form/FilteringSelect", "dijit/form/DateTextBox",
+			"dijit/form/CheckBox", "dijit/form/TextBox"
+		], function (ready, Memory, FilteringSelect, DateTextBox, CheckBox, TextBox) {
 			var stateStore = new Memory({
 				data: [
 					{name: "Alabama", id: "AL"},
@@ -53,17 +54,35 @@
 					value: "CA",
 					store: stateStore,
 					searchAttr: "name"
-				}, "stateSelect");
+				}, "stateSelect").startup();
+				var dateTextBox = new DateTextBox({
+					id: "date1",
+					name: "date1",
+					value: "2011-12-30",
+					required: true,
+					readonly: true
+				}, "date1").startup();
+				var checkBox = new CheckBox({
+					id: "cb"
+				}, "cb").startup();
+				var textBox = new TextBox({
+					id: "textBox",
+					trim: true,
+					propercase: true
+				}, "textBox").startup();
 			});
 		});
 	</script>
 </head>
 <body class="claro">
-<input id="stateSelect">
-
-<p>
-	<button onclick="alert(dijit.byId('stateSelect').get('value'))">Get value</button>
-	<button onclick="alert(dijit.byId('stateSelect').get('displayedValue'))">Get displayed value</button>
-</p>
+	<p></p>
+	<input id="stateSelect">
+	<p></p>
+	<label for="date1">Drop down Date box:</label>
+	<input id="date1">
+	<p></p>
+	<input id="cb"/> <label for="cb">I agree</label>
+	<p></p>
+	<input id="textBox">
 </body>
 </html>
