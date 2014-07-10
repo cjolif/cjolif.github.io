@@ -23,15 +23,15 @@ must be taken on how the standards must be adopted.
 
 ### Performance and Browser support
 
-Some of the Web Components specifications are not easy to implement in the browser while both, keeping high 
-standards on performances, and providing support for a relatively wide range of browsers (think Android stock browser or IE9 for 
+Some of the Web Components specifications are not easy to implement in the browser while both keeping high 
+standards for performance and providing support for a relatively wide range of browsers (think Android stock browser or IE9 for 
 example that have not yet disappeared and are thus important to take into account). Some projects like Polymer have decided
 to implement the entire standard set at all cost. On our side we decided to concentrate on what we consider the two most 
 important pieces of Web Components, namely, the custom elements and template specifications. 
 
 For these reasons, at least for now, we do not leverage specifications like Shadow DOM for which the trade-off between 
-implementation and runtime cost vs. benefit is not obvious. On the long run, when Shadow DOM will be natively implemented 
-we will probably leverage it, however on the short term we figured out we would get better results without it.
+implementation and runtime cost vs. benefit is not obvious. In the long run, when Shadow DOM will be natively implemented 
+we will probably leverage it, however in the short term we figured out we would get better results without it.
 
 That said, even though we do provide our own small custom element shim for best performance/code size vs. feature ratio, 
 when Polymer or native implementation is available we do rely on them to provide the feature and for this reason you 
@@ -44,21 +44,21 @@ core of the component, surrounded by CSS and JavaScript logic, on our side we do
 where the JavaScript logic is at the core of the element, and depends on the HTML template and CSS. We think this approach
 has several advantages including:
 
-  * making from an MVC perspective the JavaScript logic the Controller of the element, its the central piece, while the View
-  (HTML, CSS) is plugged onto the element and can possibly differ while the JavaScript logic stays identical.
-  * having ability to leverage [RequireJS](http://requirejs.org) the widely adopted [AMD](http://requirejs.org/docs/whyamd.html) loader 
+  * from an MVC perspective, makes the Controller (the element's javascript) the central piece, while the View
+  (HTML, CSS) is plugged into the element and can possibly differ while the JavaScript logic stays identical.
+  * having ability to leverage [RequireJS](http://requirejs.org), the widely adopted [AMD](http://requirejs.org/docs/whyamd.html) loader 
    to benefit from an ecosystem of plugins allowing you to extend what your Web Component can consume in terms of dependencies
    as well as benefit from a full–fledged build system to easily create single file download for your element.
 
 ### Advanced features
 
-Finally Web Components are definitely enough to build a UI element from scratch, however when looking into building an 
-enterprise class components set you might want to abstract yourself a little bit from the low-level Web Components 
-specifications and build on top of a set of higher level interfaces that are providing you with the services you are 
-looking for without having you to re-design them each time you build a new element.
+Finally, while Web Components are definitely enough to build a UI element from scratch, when looking into building
+enterprise class components you might want to abstract yourself a little bit from the low-level Web Components 
+specifications and build on top of a set of higher level interfaces that provide you with the services you are 
+looking for, rather than redesigning them each time you build a new element.
 
-For this reason, delite is providing a set of features on top of standards that make easier for you to build advanced UI elements. 
-Typical example are JavaScript AMD modules for managing your element selection state, access to data or form value. We do
+For this reason, delite provides a set of features on top of standards that make easier for you to build advanced UI elements. 
+Typical example are JavaScript AMD modules for managing your element selection state, access to data or form value. We 
 also provide theming management, allowing your element to automatically switch CSS theming based on its runtime
 environment.
 
@@ -66,12 +66,12 @@ environment.
 
 With that said, let's be a bit more concrete and have a quick look at how a delite element is built:
 
-The main file is an AMD module that will be loaded by RequireJS and contains the element logic as well at links
-into its HTML template and CSS dependencies:
+The main file is an AMD module that will be loaded by RequireJS and contains the element logic as well as links
+to its HTML template and CSS dependencies:
 
 ```js
 define(["delite/register", "delite/Templated", "delite/handlerbar!template.html", "delite/css!style.css"],
-  function(Templated, template) {
+  function(register, Templated, template) {
   return register("my-element", [HTMLElement /* you might extend another HTML element*/, Templated], {
     property: "default",
     template: template
@@ -88,18 +88,18 @@ can be use to provide reactive binding between the element properties and the te
 </template>
 ```
 
-More advanced binding can be achieve by leveraging alternate binding libraries in your template such as <a href="https://github.com/ibm-js/liaison">liaision</a>.
+More advanced binding can be achieved by leveraging alternate binding libraries in your component and template such as <a href="https://github.com/ibm-js/liaison">liaison</a>.
 
 Finally the CSS is obviously providing the styling for the element:
 
 ```css
-.my-element {
+my-element {
   background-color: blue
 }
 ```
 
-The template and the CSS files are automatically loaded and applied when the widget is imported into the page that 
-you can then use as any Web Component using its custom tag:
+The template and the CSS files are automatically loaded and applied when the widget is imported into the page, and 
+you can then use it as any Web Component using its custom tag:
 
 ```html
 <my-element property="value"></my-element>
@@ -116,7 +116,7 @@ The second project I wanted to introduce today, [deliteful](/deliteful/index.htm
 
 ### Multichannel
 
-All those elements are designed as multi channel widgets that can render and perform well both on desktop and mobile devices.
+All of deliteful's elements are designed as multi channel widgets that can render and perform well both on desktop and mobile devices.
 They do leverage CSS as much as possible instead of relying on JavaScript. In particular their layouts are thought
 from a responsive design perspective making sure they will adapt automatically to the various form factors.
 
@@ -136,16 +136,16 @@ your application as any Web Component:
 <d-star-rating id="rating" min="0" max="5" readOnly="true">
 ```
 
-This will enable a full interoperability of those elements with other <a href="http://webcomponents.org/">Web Components</a>.
+This will enable a full interoperability of these elements with other <a href="http://webcomponents.org/">Web Components</a>.
 
 You can learn more about deliteful on our [site](/deliteful/index.html) and generate your first application based on 
 deliteful elements using our [Yeoman generator](/deliteful/getting-started.html).
 
 ## Conclusion
 
-Those two projects are still in their early phase, and you should still use them with caution as things will still evolve
-and APIs are definitely not engraved in the marble. However if you are interested in the direction we are following, we will
-definitely be happy to hear from you about them. So please don't hesitate to check the projects out and provide feedback, 
+These two projects are still in their early phases, and you should still use them with caution as things will still evolve
+and APIs are definitely not engraved in stone. However if you are interested in the direction we are following, we will
+definitely be happy to hear from you. So please don't hesitate to check the projects out and provide feedback, 
 either here, on the issue tracker or the mailing lists.
 
 From now on, we will try to regularly share news and technical insights about those two projects and 
