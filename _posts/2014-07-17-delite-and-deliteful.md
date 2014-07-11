@@ -70,12 +70,12 @@ The main file is an AMD module that will be loaded by RequireJS and contains the
 to its HTML template and CSS dependencies:
 
 ```js
-define(["delite/register", "delite/Templated", "delite/handlerbar!template.html", "delite/css!style.css"],
-  function(register, Templated, template) {
-  return register("my-element", [HTMLElement /* you might extend another HTML element*/, Templated], {
+define(["delite/register", "delite/Widget", "delite/handlerbar!template.html", "delite/css!style.css"],
+  function(register, Widget, template) {
+  return register("my-element", [HTMLElement /* you might extend another HTML element*/, Widget], {
     property: "default",
-    template: template
-  }
+    buildRendering: template
+  });
 });
 ```
 

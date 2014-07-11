@@ -1,6 +1,7 @@
 ---
 layout: main
 ---
+<div class="container" role="main">
 <!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
 <div class="header">
@@ -36,6 +37,7 @@ layout: main
 </div>
 <br/>
 {% endfor %}
+</div>
 
 <!-- Pagination links -->
 {% if paginator.total_pages > 1 %}
@@ -52,4 +54,5 @@ layout: main
 	<span class="next ">Next</span>
 	{% endif %}
 </div>
-{% endif %}		
+{% endif %}
+
