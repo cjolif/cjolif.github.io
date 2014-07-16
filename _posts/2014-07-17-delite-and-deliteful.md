@@ -74,7 +74,7 @@ define(["delite/register", "delite/Widget", "delite/handlerbar!template.html", "
   function(register, Widget, template) {
   return register("my-element", [HTMLElement /* you might extend another HTML element*/, Widget], {
     property: "default",
-    buildRendering: template
+    template: template
   });
 });
 ```
